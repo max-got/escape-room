@@ -13,7 +13,6 @@ Dieses Repository enthält die kleinen Programme und die Dokumentation für das 
   - [Installation](#installation)
   - [Verwendung](#verwendung)
   - [Autoren](#autoren)
-  - [Lizenz](#lizenz)
 
 ## Projektbeschreibung
 
@@ -36,6 +35,7 @@ Die Programme sind in Python geschrieben und sind im Ordner `raetsel` zu finden.
 ## Verwendung
 
 ## Autoren
+
 
 - [**Max Gottschalk**](https://github.com/max-got)
 - [**Gregor Rose**](https://github.com/Grulk47)
