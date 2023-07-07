@@ -29,6 +29,8 @@ Die Programme sind in Python geschrieben und sind im Ordner `raetsel` zu finden.
 
 ## Dokumentation
 
+[Infrarot + Buzzer](/raetsel/infrarot_buzzer/README.md)
+
 ## Installation
 
 ## Verwendung
