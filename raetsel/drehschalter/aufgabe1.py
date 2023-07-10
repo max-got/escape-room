@@ -4,7 +4,7 @@ import os
 
 i = 0
 
-def printResultDrehschalter(counter: int, q_and_a: dict[int, dict[str, any]]):
+def printResultDrehschalter(counter: int, q_and_a: dict[int, dict[str, any]]) -> None:
 	"""return print value
 	
 	Die Funktion iteriert durch Array-Elemente des uebergebenen Dictionaries
@@ -81,19 +81,10 @@ def aufgabe1(counter: int) -> int:
 				counter += 1
 				if counter == 5:
 					print(q_and_a[counter]["frage"])
-					return 0
+					return True
 				else:
 					print(q_and_a[counter]["frage"])
 			else:
 				os.system('clear')
 				print("Leider falsch, versuche ein anderes Ergebnis.")
 				print(q_and_a[counter]["frage"])
-
-aufgabe1(1)
-
-try:
-	while True:
-		time.sleep(2)
-
-except KeyboardInterrupt:
-	GPIO.cleanup()

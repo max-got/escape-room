@@ -30,7 +30,7 @@ def aufgabe2():
 		time.sleep(2)
 		if detection_array == [0, 1, 0, 1]:
 			print("Richtig, du hast das Raetsel geloest!")
-			return 0
+			return True
 		elif len(detection_array) == 5:
 			detection_array = []
 			info_schedule += 1
@@ -41,13 +41,3 @@ def aufgabe2():
 				print("Tipp 2: Du musst durch das Unterbrechen der Lichtschranke die richtige Reihenfolge von 0en und 1en ermitteln, um das Raetsel zu loesen.")
 			elif info_schedule == 5:
 				info_schedule = 0
-
-
-aufgabe2()
-
-try:
-	while True:
-		time.sleep(2)
-
-except KeyboardInterrupt:
-	GPIO.cleanup()
