@@ -28,7 +28,12 @@ Die Programme sind in Python geschrieben und sind im Ordner `raetsel` zu finden.
 
 ## Dokumentation
 
-[Infrarot + Buzzer](/raetsel/infrarot_buzzer/README.md)
+1. [Drehschalter (Fragegen)](/raetsel/drehschalter/README.md)
+2. [Infrarot + Abstandssensor](/raetsel/infrarot_abstand/README.md)
+3. 
+4. 
+5. 
+6. [Infrarot + Buzzer](/raetsel/infrarot_buzzer/README.md)
 
 ## Installation
 
