@@ -1,5 +1,6 @@
-from au1 import aufgabe1
-from au2 import aufgabe2
+from drehschalter import aufgabe1
+from infrarot_abstand import aufgabe2
+from sensehat_simon import escape
 import RPi.GPIO as GPIO
 from sense_hat import SenseHat
 import time
@@ -8,7 +9,10 @@ from functools import partial
 raetsel = 1
 s = SenseHat()
 
-lvls = [{"fn": aufgabe1, "args": 1},{"fn": aufgabe2, "args": ""}]
+lvls = [{"fn": aufgabe1.aufgabe1, "args": 1},
+	{"fn": aufgabe2.aufgabe2, "args": ""},
+	{"fn": escape.main, "args": ""}
+	]
 print(lvls[0]["fn"])
 
 def lvl_up(fn, GPIO, level: int) -> True:
