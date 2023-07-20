@@ -30,9 +30,9 @@ Die Programme sind in Python geschrieben und sind im Ordner `raetsel` zu finden.
 
 1. [Drehschalter (Fragegen)](/raetsel/drehschalter/README.md)
 2. [Infrarot + Abstandssensor](/raetsel/infrarot_abstand/README.md)
-3. 
-4. 
-5. 
+3. [SenseHat Simon Says](/raetsel/sensehat_simon/README.md)
+4.
+5.
 6. [Infrarot + Buzzer](/raetsel/infrarot_buzzer/README.md)
 
 ## Installation
@@ -40,7 +40,6 @@ Die Programme sind in Python geschrieben und sind im Ordner `raetsel` zu finden.
 ## Verwendung
 
 ## Autoren
-
 
 - [**Max Gottschalk**](https://github.com/max-got)
 - [**Gregor Rose**](https://github.com/Grulk47)
