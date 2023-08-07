@@ -9,17 +9,13 @@ from .music import key_to_num as k2n, makeSignal
 from .sequence import is_correct_sequence, seqGen
 from .events import exc_event
 
-
-GPIO.setmode(GPIO.BCM)
 GPIO_P1N = seqGen()
-GPIO_PIN = 5
-GPIO.setup(GPIO_PIN, GPIO.OUT)
-# Das Software-PWM Modul wird initialisiert - hierbei wird die Frequenz 500Hz als Startwert genommen
-pwm = GPIO.PWM(GPIO_PIN, 500)
 
-
-def main(device: InputDevice):
+def main(device: InputDevice, buzzer_pin:int = 5):
     sequence = []
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(buzzer_pin, GPIO.OUT)
+    pwm = GPIO.PWM(buzzer_pin, 500)
     # Schleife, die auf Tastendruck wartet
     for event in device.read_loop():
         if event.type == ecodes.EV_KEY:

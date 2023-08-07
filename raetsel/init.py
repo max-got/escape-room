@@ -13,8 +13,10 @@ s = SenseHat()
 
 #kann auch event0, event1, event2, event3 sein
 infrarot_sensor = InputDevice("/dev/input/event3")
-raetsel = 1
+#GPIO PIN des Buzzers (PWM Modul)
+buzzer_pin = 5
 
+raetsel = 1
 
 def lvl_up(fn, GPIO, level: int) -> True:
 	s.show_letter(str(level))
@@ -48,7 +50,7 @@ def start_escape_room():
 				else:
 					return(print("Escape-Room bendet"))
 			if raetsel == 6:
-				lvl_up(partial(infrarot_escape.main, device = infrarot_sensor ), GPIO, raetsel) 
+				lvl_up(partial(infrarot_escape.main, device = infrarot_sensor, buzzer_pin  = buzzer_pin ), GPIO, raetsel) 
 				
 		except KeyboardInterrupt:
 			GPIO.cleanup()
