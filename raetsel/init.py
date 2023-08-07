@@ -1,24 +1,25 @@
 from drehschalter import aufgabe1
 from infrarot_abstand import aufgabe2
-from sensehat_simon import escape
+from sensehat_simon import escape as simon_escape
+from infrarot_buzzer import escape as infrarot_escape
+from sensehat_3in1 import sensehat_riddle as aufgabe4
+from hand_recognition import escape_ASL as asl
+from evdev import InputDevice
 import RPi.GPIO as GPIO
 from sense_hat import SenseHat
-import time
 from functools import partial
 
-raetsel = 1
 s = SenseHat()
 
-lvls = [{"fn": aufgabe1.aufgabe1, "args": 1},
-	{"fn": aufgabe2.aufgabe2, "args": ""},
-	{"fn": escape.main, "args": ""}
-	]
-print(lvls[0]["fn"])
+#kann auch event0, event1, event2, event3 sein
+infrarot_sensor = InputDevice("/dev/input/event3")
+raetsel = 1
+
 
 def lvl_up(fn, GPIO, level: int) -> True:
 	s.show_letter(str(level))
 	global raetsel
-	print("curr_lvl" + str(level))
+	print("Momentanes Level " + str(level))
 	completed = False
 	
 	while completed == False:
@@ -26,30 +27,35 @@ def lvl_up(fn, GPIO, level: int) -> True:
 	GPIO.cleanup()
 	raetsel = raetsel + 1
 	return completed
-	
-def start_escape_room():
-	#while True:
-	for i in range(0, len(lvls)):
-		try:
-			lvl_up(partial(lvls[i]["fn"], lvls[i]["args"]), GPIO, raetsel)
-		except:
-			pass
-			#print(i)
 
 
-start_escape_room()
-
-
-'''def start_escape_room():	
-	while True:
+def start_escape_room():	
 		try:
 			if raetsel == 1:
-				lvl_up(partial(aufgabe1, 1), GPIO, raetsel) 
+				lvl_up(partial(aufgabe1.aufgabe1, 1), GPIO, raetsel) 
 			if raetsel == 2:
-				lvl_up(partial(aufgabe2), GPIO, raetsel) 
+				lvl_up(partial(aufgabe2.aufgabe2), GPIO, raetsel)
+			if raetsel == 3:
+				lvl_up(partial(simon_escape.main), GPIO, raetsel) 
+			if raetsel == 4:
+				lvl_up(partial(aufgabe4.main), GPIO, raetsel)
+			if raetsel == 5:
+				s.show_letter("?")
+				print("Nimmst du am Workshop teil? j/n")
+				x = input("Bitte j oder n eingeben: ")	
+				if x == "J" or x == "j":
+					lvl_up(partial(asl.main), GPIO, raetsel)
+				else:
+					return(print("Escape-Room bendet"))
+			if raetsel == 6:
+				lvl_up(partial(infrarot_escape.main, device = infrarot_sensor ), GPIO, raetsel) 
+				
 		except KeyboardInterrupt:
 			GPIO.cleanup()
+			raise Exception("Der Escape Room wurde beendet.")
 		except Exception as e:
-			print(e)
+			#print(e.arg)
 			GPIO.cleanup()
-'''
+			s.clear()
+
+start_escape_room()
