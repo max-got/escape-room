@@ -1,7 +1,7 @@
 import random
 
 class Sequence:
-    def __init__(self, symbols : dict[str, list[list[int]]]):
+    def __init__(self, symbols): #dict[str, list[list[int]]]):
         self.sequence = []
         self.symbols = symbols
     def generate(self, length):

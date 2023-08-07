@@ -1,8 +1,8 @@
 import time
 from sense_hat import SenseHat
-from sequence import Sequence
-from ledHelper import LEDHelper
-from symbols import symbols
+from .sequence import Sequence
+from .ledHelper import LEDHelper
+from .symbols import symbols
 
 def main(
         curr_lvl:int = 1,
@@ -48,8 +48,8 @@ def main(
     # Track the lvls won
     lvls_won = 0
 
-    print(sequenceHelper.getSequence())
-    while True:
+    print(sequenceHelper.getSequence())	
+    while lvls_won != lvls_to_win: #True:
         # Check if the player has won
         if lvls_won == lvls_to_win:
             # Show won instance
@@ -93,3 +93,4 @@ def main(
                     main(1, 1, speed_factor, append_factor, lvls_to_win)
                     return False
         time.sleep(0.1)
+    return True

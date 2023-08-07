@@ -1,5 +1,5 @@
 import time
-from symbols import checkmark, x
+from .symbols import checkmark, x
 from sense_hat import SenseHat
 
 class LEDHelper:
