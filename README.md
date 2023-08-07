@@ -10,7 +10,6 @@ Dieses Repository enthält die kleinen Programme und die Dokumentation für das 
   - [Hardware](#hardware)
   - [Programme](#programme)
   - [Dokumentation](#dokumentation)
-  - [Installation](#installation)
   - [Verwendung](#verwendung)
   - [Autoren](#autoren)
 
@@ -21,23 +20,32 @@ Das Projekt enstannt aus einem Workshops zum Summer Coding Festival(2023) an der
 ## Hardware
 
 Für dieses Projekt wurden mehrere Raspberry Pi 4 Model B mit 4GB RAM verwendet.
+Folgende Sensoren wurden verwendet:
 
-## Programme
+- [SenseHat](https://www.raspberrypi.org/products/sense-hat/)
+- [Passive Piezo-Buzzer](https://sensorkit.joy-it.net/en/sensors/ky-006)
+- [Infrarot-Abstandssensor](https://sensorkit.joy-it.net/en/sensors/ky-032)
+- [Infrared receiver](https://sensorkit.joy-it.net/en/sensors/ky-022)
+- [Rotary encoder](https://sensorkit.joy-it.net/en/sensors/ky-040)
+- Webcam
 
-Die Programme sind in Python geschrieben und sind im Ordner `raetsel` zu finden.
+## Rätsel
+
+Die Rätsel sind in Python geschrieben und sind im Ordner `raetsel` zu finden. Momentan sind 6 Rätsel implementiert, welche in der Reihenfolge der Nummerierung gelöst werden müssen.
 
 ## Dokumentation
 
-1. [Drehschalter (Fragegen)](/raetsel/drehschalter/README.md)
-2. [Infrarot + Abstandssensor](/raetsel/infrarot_abstand/README.md)
-3. [SenseHat Simon Says](/raetsel/sensehat_simon/README.md)
-4.
-5.
-6. [Infrarot + Buzzer](/raetsel/infrarot_buzzer/README.md)
-
-## Installation
+1. [Init](/raetsel/README.md)
+2. [Drehschalter (Fragen)](/raetsel/drehschalter/README.md)
+3. [Infrarot + Abstandssensor](/raetsel/infrarot_abstand/README.md)
+4. [SenseHat Simon Says](/raetsel/sensehat_simon/README.md)
+5. [SenseHat 3in1](/raetsel/sensehat_3in1/README.md)
+6. [Hand Recognition](/raetsel/hand_recognition/README.md)
+7. [Infrarot + Buzzer](/raetsel/infrarot_buzzer/README.md)
 
 ## Verwendung
+
+Um die Rätsel zu starten, muss das Programm `init.py` ausgeführt werden. Dieses Programm startet die Rätsel in der richtigen Reihenfolge und wechselt bei erfolgreicher Lösung zum nächsten Rätsel. Die Rätsel können auch einzeln gestartet werden, indem die jeweilige `main.py` ausgeführt wird.
 
 ## Autoren
 
