@@ -41,3 +41,19 @@ def aufgabe2():
 				print("Tipp 2: Du musst durch das Unterbrechen der Lichtschranke die richtige Reihenfolge von 0en und 1en ermitteln, um das Raetsel zu loesen.")
 			elif info_schedule == 5:
 				info_schedule = 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

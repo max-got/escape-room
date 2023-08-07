@@ -9,13 +9,15 @@ from .music import key_to_num as k2n, makeSignal
 from .sequence import is_correct_sequence, seqGen
 from .events import exc_event
 
+
 GPIO_P1N = seqGen()
 
-def main(device: InputDevice, buzzer_pin:int = 5):
+
+def main(device: InputDevice, buzzer:int = 5):
     sequence = []
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(buzzer_pin, GPIO.OUT)
-    pwm = GPIO.PWM(buzzer_pin, 500)
+    GPIO.setup(buzzer, GPIO.OUT)
+    pwm = GPIO.PWM(buzzer, 500)
     # Schleife, die auf Tastendruck wartet
     for event in device.read_loop():
         if event.type == ecodes.EV_KEY:

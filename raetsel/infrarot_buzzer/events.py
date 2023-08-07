@@ -17,7 +17,7 @@ def checking_sequence() -> None:
         _sleep(0.5)
 
 
-# Das sieht aber spanned aus. Was macht das? ;)
+# Das sieht aber spannend aus. Was macht das? ;)
 def give_hint(string) -> str:
     key = _choice(string)
     index = string.index(key)

@@ -35,15 +35,16 @@ Die Sensoren können auch an andere Pins angeschlossen werden. In diesem Fall m�
 
    ```bash
    dtoverlay=gpio-ir,gpio_pin=17
+   dtoverlay=gpio-ir-tx,gpio_pin=18
    ```
 
-   Die Zeile `dtoverlay=gpio-ir` aktiviert den Infrarot-Empfänger. Achtung, gpio_pin muss auf den Pin angepasst werden, an dem der Infrarot-Empfänger angeschlossen ist. In diesem Fall ist der Infrarot-Empfänger an Pin 17 angeschlossen.
+   Die Zeile `dtoverlay=gpio-ir` aktiviert den Infrarot-Empfänger und die Zeile `dtoverlay=gpio-ir-tx` aktiviert den Infrarot-Sender.
 
    ```bash
    sudo reboot
    ```
 
-   Nach dem Neustart des Raspberry Pi sollte der Infrarot-Empfänger aktiviert sein.
+   Nach dem Neustart des Raspberry Pi sollte der Infrarot-Empfänger und der Infrarot-Sender aktiviert sein.
 
    ```bash
    sudo apt-get install ir-keytable -y
@@ -101,10 +102,8 @@ Die Sensoren können auch an andere Pins angeschlossen werden. In diesem Fall m�
 
    Wichtig ist, dass die `MY_KEYMAP.toml` Datei bereit liegt, da sie für weitere Schritte benötigt wird.
 
-   Weitere Informationen sind unter folgenden Links zu finden:
-
-   - https://wiki.ubuntuusers.de/ir-keytable/#Keymap
-   - https://manpages.debian.org/testing/ir-keytable/rc_keymap.5.en.html
+   Weitere Informationen sind unter folgendem Link zu finden:
+   https://wiki.ubuntuusers.de/ir-keytable/#Keymap
 
 ## Code
 
