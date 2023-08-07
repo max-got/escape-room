@@ -101,8 +101,10 @@ Die Sensoren können auch an andere Pins angeschlossen werden. In diesem Fall m�
 
    Wichtig ist, dass die `MY_KEYMAP.toml` Datei bereit liegt, da sie für weitere Schritte benötigt wird.
 
-   Weitere Informationen sind unter folgendem Link zu finden:
-   https://wiki.ubuntuusers.de/ir-keytable/#Keymap
+   Weitere Informationen sind unter folgenden Links zu finden:
+
+   - https://wiki.ubuntuusers.de/ir-keytable/#Keymap
+   - https://manpages.debian.org/testing/ir-keytable/rc_keymap.5.en.html
 
 ## Code
 
