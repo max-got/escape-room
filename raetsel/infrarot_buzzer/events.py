@@ -4,7 +4,7 @@ from time import sleep as _sleep
 from tqdm import tqdm as _tqdm
 from random import choice as _choice
 
-from music import play_fail_music, play_success_music, play_tooLong_music
+from .music import play_fail_music, play_success_music, play_tooLong_music
 
 
 console = _Console()
@@ -18,7 +18,7 @@ def checking_sequence() -> None:
 
 
 # Das sieht aber spanned aus. Was macht das? ;)
-def give_hint(string: list[str]) -> str:
+def give_hint(string) -> str:
     key = _choice(string)
     index = string.index(key)
 

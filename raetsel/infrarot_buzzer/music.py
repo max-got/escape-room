@@ -1,7 +1,7 @@
 from time import sleep as _sleep
-
-from utils import int_check as _int_check
 from random import randint as _randint
+
+from .utils import int_check as _int_check
 
 tooLong_music = {
     'melody': [262, 294, 262, 294, 262],

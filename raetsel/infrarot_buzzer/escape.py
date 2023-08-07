@@ -1,22 +1,24 @@
 # Benoetigte Module werden importiert und eingegrichtet
 from evdev import InputDevice, categorize, ecodes
 from random import choice
-from utils import obfuscated_func
-from music import key_to_num as k2n, makeSignal
-from sequence import is_correct_sequence, seqGen
 import RPi.GPIO as GPIO
 from random import choice as _choice
-from events import exc_event
+
+from .utils import obfuscated_func
+from .music import key_to_num as k2n, makeSignal
+from .sequence import is_correct_sequence, seqGen
+from .events import exc_event
+
 
 GPIO.setmode(GPIO.BCM)
 GPIO_P1N = seqGen()
-GPIO_PIN = 18
+GPIO_PIN = 5
 GPIO.setup(GPIO_PIN, GPIO.OUT)
 # Das Software-PWM Modul wird initialisiert - hierbei wird die Frequenz 500Hz als Startwert genommen
 pwm = GPIO.PWM(GPIO_PIN, 500)
 
 
-def read_input_event(device: InputDevice):
+def main(device: InputDevice):
     sequence = []
     # Schleife, die auf Tastendruck wartet
     for event in device.read_loop():
@@ -46,17 +48,8 @@ def read_input_event(device: InputDevice):
                     # Wenn die Sequenz korrekt ist, wird die Erfolgsmusik abgespielt
                     if is_correct_sequence(sequence, GPIO_P1N):
                         exc_event(pwm, 1)
+                        return True
                     # Wenn die Sequenz nicht korrekt ist, wird die Fehlermusik abgespielt
                     else:
                         exc_event(pwm, 0)
                     sequence = []
-
-
-while True:
-    try:
-        read_input_event(InputDevice("/dev/input/event1"))
-    except KeyboardInterrupt:
-        GPIO.cleanup()
-    except Exception as e:
-        print(e)
-        GPIO.cleanup()

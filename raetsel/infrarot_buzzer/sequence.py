@@ -2,7 +2,7 @@ from random import choice as _choice
 import base64 as u
 
 
-def is_correct_sequence(sequence: list[str], expected_sequence: list[str]) -> bool:
+def is_correct_sequence(sequence, expected_sequence): #list[str]) -> bool:
     """Überprüft, ob die Sequenz korrekt ist
     sequence: Die Sequenz, die überprüft werden soll
     expected_sequence: Die erwartete Sequenz
