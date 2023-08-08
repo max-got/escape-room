@@ -32,7 +32,7 @@ raetsel = 1
 
 ## SD-Karte Klonen
 
-Um den Escape Room auch auf anderer Hardware auszuführen oder auf mehereren Raspberries parallel kann die SD-Karte geklnt werden. Dazu gibt es verschiedenen Wege. Getested wurde der Vorgang mit dem Tool Etcher [(Download)](https://etcher.balena.io/#download-etcher) auf Windows. Folgenden Schritte müssen dann befolgt werden:
+Um den Escape Room auch auf anderer Hardware auszuführen oder auf mehereren Raspberries parallel kann die SD-Karte geklont werden. Dazu gibt es verschiedenen Wege. Getested wurde der Vorgang mit dem Tool Etcher [(Download)](https://etcher.balena.io/#download-etcher) auf Windows. Folgenden Schritte müssen dann befolgt werden:
 
 1. Etcher starten
 
