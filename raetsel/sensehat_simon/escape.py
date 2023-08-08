@@ -48,7 +48,7 @@ def main(
     # Track the lvls won
     lvls_won = 0
 
-    print(sequenceHelper.getSequence())	
+    #print(sequenceHelper.getSequence())	
     while lvls_won != lvls_to_win: #True:
         # Check if the player has won
         if lvls_won == lvls_to_win:
@@ -79,7 +79,7 @@ def main(
                             sequenceHelper.addSymbol()
 
                         
-                        print(sequenceHelper.getSequence())
+                        #print(sequenceHelper.getSequence())
                         # Display the sequence on the LED matrix.
                         ledHelper.show_sequence(sec, sequenceHelper.valuesAsArray())
 
