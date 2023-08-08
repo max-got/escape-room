@@ -40,7 +40,7 @@ def start_escape_room():
 			if raetsel == 3:
 				lvl_up(partial(simon_escape.main), GPIO, raetsel) 
 			if raetsel == 4:
-				lvl_up(partial(aufgabe4.main), GPIO, raetsel)
+				lvl_up(partial(aufgabe4.main), GPIO, raetsel) 
 			if raetsel == 5:
 				s.show_letter("?")
 				print("Nimmst du am Workshop teil? j/n")
@@ -49,10 +49,10 @@ def start_escape_room():
 					lvl_up(partial(asl.main), GPIO, raetsel)
 				else:
 					return(print("Escape-Room bendet"))
-			if raetsel == 6:
-				print("buzzzer")
-				lvl_up(partial(infrarot_escape.main, device = infrarot_sensor, buzzer = buzzer_pin ), GPIO, raetsel) 
-
+			if raetsel == 6: 
+				lvl_up(partial(infrarot_escape.main, device = infrarot_sensor, buzzer_pin = buzzer_pin ), GPIO, raetsel) 
+			if raetsel == 7:
+				s.clear()
 				
 		except KeyboardInterrupt:
 			GPIO.cleanup()
