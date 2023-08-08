@@ -29,3 +29,23 @@ raetsel = 1
 `buzzer_pin` ist der Pin, an dem der Buzzer angeschlossen ist. Dieser muss an den Raspberry Pi angeschlossen sein. Dazu mehr in der `README.md` im Ordner `raetsel/infrarot_buzzer`.
 
 `raetsel` ist die Variable, die das Level des Spiels angibt. Diese wird in der `init.py` hochgezählt.
+
+## SD-Karte Klonen
+
+Um den Escape Room auch auf anderer Hardware auszuführen oder auf mehereren Raspberries parallel kann die SD-Karte geklont werden. Dazu gibt es verschiedenen Wege. Getested wurde der Vorgang mit dem Tool Etcher [(Download)](https://etcher.balena.io/#download-etcher) auf Windows. Folgenden Schritte müssen dann befolgt werden:
+
+1. Etcher starten
+
+2. 'Clone drive' auswählen
+
+3. Entsprechende SD-Karte als Quelle auswählen
+
+4. 'Select 1' klicken
+
+5. In 'select target' eine entsprechende Zielkarte auswählen (wichtig: diese muss mindestens die gleiche größe haben wie die Quellkarte)
+
+6. 'Select 1' klicken
+
+7. 'Flash' zum starten drücken
+
+Danach warten bis der Vorgang abgeschlossen ist und die neue SD-Karte erfüllt alle nötige Softwarevorgaben.

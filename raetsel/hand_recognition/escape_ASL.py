@@ -294,7 +294,7 @@ def checkSolution(solution, logo):
     '''
     solution = ''.join(solution)    
     if solution == bytes.fromhex("544842").decode('utf-8'):
-        print("Glückwunsch!")
+        print("Code korrekt!")
         for i in range(0, 3):
             sense.set_pixels(logo)
             time.sleep(.3)
