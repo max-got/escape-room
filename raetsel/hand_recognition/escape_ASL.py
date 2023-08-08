@@ -1,14 +1,13 @@
-#Import the necessary Packages and scritps for this software to run 
 import cv2
 import mediapipe as freedomtech
 from gtts import gTTS
 import os
 from collections import Counter
-#from module import findnameoflandmark, findpostion, speak
 import math
 import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
+import RPi.GPIO as GPIO
 
 sense = SenseHat()
 
@@ -17,19 +16,29 @@ handsModule = freedomtech.solutions.hands
 
 mod=handsModule.Hands()
 
+Knopf_PIN = 26
 
 h=480
 w=640
 
 def main():
+    '''
+    main Funktion
+    In dieser Funktion werden alle Variablen initialisiert.
+    Dazu zählen verschiedene Farben in RGB, verschiedene Bilder für die 8x8 LED-Matrix auf dem Sensehat.
+    In der while-Schleife wird das Fenster für die Kamera initalisiert und alle möglichen Handzeichen nach dem ASL-Alphabet codiert.
+    '''
 
     sense.clear()
 
-    #Use CV2 Functionality to create a Video stream and add some values + variables
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(Knopf_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+    GPIO.add_event_detect(Knopf_PIN, GPIO.FALLING, bouncetime=100)
+
+    #Nutzen der CV2 Funktionen um eine Videostream zu erstellen
     cap = cv2.VideoCapture(0)
     tip=[8,12,16,20]
     tipname=[8,12,16,20]
-
 
     text=""
 
@@ -76,15 +85,15 @@ def main():
             w, w, y, y, y, y, w, w,
             ]
             
-#Create an infinite loop which will produce the live feed to our desktop and that will search for hands
+# Endlosschleife innerhalb welcher das Kamerafenster geöffnet wird und die Logik der Handerkennung und Übersetzung stattfindet
     while True:
+
         ret, frame = cap.read() 
 
-        
-        #Determines the frame size, 640 x 480 offers a nice balance between speed and accurate identification
+        #Fenstergröße wird festgelegt
         frame1 = cv2.resize(frame, (640, 480))
         
-        #Below is used to determine location of the joints of the fingers 
+        #Funktionen die die Koordinaten der Finger und Gelenke feststellen
         a=findpostion(frame1)
         b=findnameoflandmark(frame1)
         
@@ -92,13 +101,9 @@ def main():
                 
             if indexUp(a) and middleDown(a) and ringDown(a) and pinkyUp(a) and thumbUp(a):
                 sense.set_pixels(love)
-                #text="I <3 U"
-                #print(text)
                 
             if indexDown(a) and middleUp(a) and ringDown(a) and pinkyDown(a) and thumbDown(a):
                 sense.set_pixels(sad)
-                #text=":("
-                #print(text)
             
             #Alle Buchstaben des Alphabets in ALS uebersetzt
             #Aufrufen der Funktion detected() wenn Buchstabe erkannt wird
@@ -179,21 +184,15 @@ def main():
                 detected("Y", sequence)
                 
             if indexUp(a) and middleDown(a) and ringDown(a) and pinkyDown(a) and a[4][1:] < a[12][1:]:
-                detected("Z", sequence)
-            
-            #sense.show_message(text)
-            #print(sequence)
-                
+                detected("Z", sequence)                
             
             #Aufruf der Funktion checkSolution() bei einer Eingabelaenge von 3
             if len(sequence) == 3:
 
                 if checkSolution(sequence, logo) == True:
                     return True
-                
-        
-        
-        #Below shows the current frame to the desktop 
+                    
+        #Zeigt das Kamerafenster an
         cv2.imshow("Frame", frame1);
         key = cv2.waitKey(1) & 0xFF
 
@@ -202,46 +201,80 @@ def main():
 #Koordinaten der Fingerposition mit einander vergleichen um Ausrichtung der Finger zu bestimmen
 
 def indexUp(a):
+    '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der Zeigefinger weggesteckt ist
+    '''
     if a[8][2:] < a[6][2:]:
         return True
 
 def indexDown(a):
+    '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der Zeigefinger zur Handfläche gerichtet ist
+    '''
     if a[8][2:] > a[6][2:]:
         return True
     
 def middleUp(a):
+     '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der Mittelfinger weggesteckt ist
+    '''
      if a[12][2:] < a[10][2:]:
          return True
         
 def middleDown(a):
+     '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der Mittelfinger zur Handfläche gerichtet ist
+    '''
      if a[12][2:] > a[10][2:]:
          return True
 
 def ringUp(a):
+     '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der Ringfinger weggesteckt ist
+    '''
      if a[16][2:] < a[14][2:]:
          return True
         
 def ringDown(a):
+     '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der Ringfinger zur Handfläche gerichtet ist
+    '''
      if a[16][2:] > a[14][2:]:
          return True
         
 def pinkyUp(a):
+     '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der kleine Finger weggesteckt ist
+    '''
      if a[20][2:] < a[18][2:]:
          return True
         
 def pinkyDown(a):
+     '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der kleine Finger zur Handfläche gerichtet ist
+    '''
      if a[20][2:] > a[18][2:]:
          return True
         
 def thumbUp(a):
+    '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der Daumen weggesteckt ist
+    '''
     if a[1][1:] < a[4][1:]:
         return True
 
 def thumbDown(a):
+    '''return boolean
+    Überprüft über die Koordinaten um festzustellen ob der Daumen zur Handfläche gerichtet ist
+    '''
     if a[1][1:] > a[4][1:]:
         return True
     
 def setSequence(value, sequence):
+    '''
+    Fügt den aktuellen Buchstaben der Sequenz hinzu.
+    Die Sequenz hat dabei maximal 3 Stellen und keine Dopplungen direkt hintereinander.
+    '''
     sense.clear()
     if len(sequence) == 0:
         sequence.append(value)
@@ -254,26 +287,40 @@ def setSequence(value, sequence):
 
 
 def checkSolution(solution, logo):
-    #f = open("solution.txt")
-    solution = ''.join(solution)
-    print(solution)
-    print(bytes.fromhex("544842").decode('utf-8'))
+    '''return boolean
+    Überprüft ob die dreistellige Sequenz der Lösung entspricht.
+    Die Lösung ist hierbei durch einen Hexcode verschlüsselt.
+    Sollte die Lösung stimmen, so wird das Logo der THB blinkend angezeigt und True returned
+    '''
+    solution = ''.join(solution)    
     if solution == bytes.fromhex("544842").decode('utf-8'):
-        print("Glueckwunsch!")
-        sense.set_pixels(logo)
+        print("Glückwunsch!")
+        for i in range(0, 3):
+            sense.set_pixels(logo)
+            time.sleep(.3)
+            sense.clear()
+            time.sleep(.3)
+        cv2.destroyAllWindows()
         return True
     else:
         return False
         
-def letter(letter):
-    sense.show_letter(letter)
     
 def detected(text, sequence):
-    setSequence(text,sequence)
-    letter(text)
-    #print(text)
+    '''
+    Wenn ein Buchstabe erkannt wird, wird er auf dem Sensehat angezeigt.
+    Mit einem Druck auf dem Knopf kann der Bucstabe bestätigt werden und es wird die Funktion setSequence aufgerufen
+    '''
+    sense.show_letter(text)
+    if GPIO.event_detected(Knopf_PIN):
+        sense.show_message(text)
+        setSequence(text,sequence)
     
 def findpostion(frame1):
+    '''return list
+    
+    Funktion der Handerkennung um die Position festzustellen.
+    '''
     list=[]
     results = mod.process(cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB))
     if results.multi_hand_landmarks != None:
@@ -284,10 +331,13 @@ def findpostion(frame1):
                 x = int(pt.x * w)
                 y = int(pt.y * h)
                 list.append([id,x,y])
-    #print(list)
     return list          
 
 def findnameoflandmark(frame1):
+     '''return list
+     
+     Funktion der Handerkennung um die landmarks, die Punkte der Hand, zu erkennen und zuzuordnen.
+     '''
      list=[]
      results = mod.process(cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB))
      if results.multi_hand_landmarks != None:
@@ -298,6 +348,6 @@ def findnameoflandmark(frame1):
                  list.append(str(point).replace ("< ","").replace("HandLandmark.", "").replace("_"," ").replace("[]",""))
      return list
 
-
+      
 
 #main()

@@ -74,7 +74,7 @@ def aufgabe1(counter: int) -> int:
 	GPIO.add_event_detect(Knopf_PIN, GPIO.FALLING, bouncetime=100)
 	while True:
 		if GPIO.event_detected(Knopf_PIN):
-			print("buttun")
+			#print("pressed")
 			if q_and_a[counter]["antworten"][i] == q_and_a[counter]["correct"]:
 				os.system('clear')
 				print("Du hast die richtige Antwort ausgewaehlt!")
