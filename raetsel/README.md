@@ -36,7 +36,7 @@ Um den Escape Room auch auf anderer Hardware auszuführen oder auf mehereren Ras
 
 1. Etcher starten
 
-2. 'Clone drive' auswäheln
+2. 'Clone drive' auswählen
 
 3. Entsprechende SD-Karte als Quelle auswählen
 
