@@ -1,6 +1,6 @@
 # Einleitung
 
-Die `ìnit.py` startet das Spiel. In dieser Datei werden alle Spiele initialisiert und gestartet.
+Die `init.py` startet das Spiel. In dieser Datei werden alle Spiele initialisiert und gestartet.
 
 Das Spiel kann mit folgendem Befehl gestartet werden:
 
