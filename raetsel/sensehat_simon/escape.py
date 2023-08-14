@@ -49,7 +49,7 @@ def main(
     lvls_won = 0
 
     #print(sequenceHelper.getSequence())	
-    while lvls_won != lvls_to_win: #True:
+    while True:
         # Check if the player has won
         if lvls_won == lvls_to_win:
             # Show won instance
